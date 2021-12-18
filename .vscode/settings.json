@@ -1,0 +1,9 @@
+{
+    "editor.fontSize": 14,
+    "window.zoomLevel": 1,
+    "terminal.integrated.fontSize": 10,
+    "workbench.colorTheme": "Noctis Minimus",
+    "workbench.iconTheme": "vscode-icons",
+    "python.pythonPath": "D:\\Anaconda\\envs\\data_science\\python.exe",
+    "python.linting.enabled": false
+}

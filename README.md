@@ -5,7 +5,7 @@ dibuat untuk pelaksanaan tugas ujian akhir semester komputasi oseanografi
 # Version 
 
 V1.0
--Versi pertama program Specsi\n
+Versi pertama program Specsi
 
 V1.1 
--Penambahan fitur print ke file .txt
+Penambahan fitur print ke file .txt

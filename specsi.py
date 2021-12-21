@@ -1,10 +1,28 @@
 from tkinter import *
 from tkinter import ttk
 from math import log10, sqrt
+judul = "Specsi Program v1.1"
+
+
+def printtofile():
+    T = str(e1.get())
+    P = str(e2.get())
+    S = str(e3.get())
+    V = str(e4.get())
+    D = str(e5.get())
+    hasil = open("hasil.txt", "a+")
+    hasil.write("Data perhitungan :\n")
+    hasil.write("Pressure : " + P + " desibar\n")
+    hasil.write("Temperature : " + T + " \N{DEGREE SIGN}C\n")
+    hasil.write("Salinity : " + S + " PSS-78\n")
+    hasil.write("Hasil perhitungan :\n")
+    hasil.write("Spesific Volume Anomaly : " + V + " M\u00B3/Kg\n")
+    hasil.write("Density Anomaly : " + D+" Kg/M\u00B3")
+    hasil.close()
 
 
 def hitung():  # Input yang diterima program
-    global P, T, S
+    global P, T, S, volume, densitas
     # tekanan dalam satuan desibar
     # temperatur dalam satuan deg celcius
     # salinitas (PSS-78)
@@ -73,17 +91,25 @@ def hitung():  # Input yang diterima program
 
 
 def return_data(data1, data2):
-    l9.configure(text="{:.2f}".format(data1))
-    l11.configure(text="{:.2f}".format(data2))
+    # l9.configure(text="{:.2f}".format(data1))
+    e4.delete(0, END)
+    e5.delete(0, END)
+    e4.insert(0, "{:.2f}".format(data1))
+    e5.insert(0, "{:.2f}".format(data2))
 
 
 '''
 main program
 '''
-#ktk_barcode = Entry(jndl, width=8, font=("Calibri", 35))
+# ktk_barcode = Entry(jndl, width=8, font=("Calibri", 35))
+
 
 jndl = Tk()
-jndl.title("Specsi Program")  # Specific Volume and Density Anomaly Finder
+jndl.title(judul)
+jndl.resizable(False, False)  # Specific Volume and Density Anomaly Finder
+# Setting icon of master window
+p1 = PhotoImage(file='s.png')
+jndl.iconphoto(False, p1)
 l1 = Label(jndl, text="Suhu:")
 l2 = Label(jndl, text="Tekanan:")
 l3 = Label(jndl, text="Salinitas:")
@@ -92,11 +118,9 @@ l5 = Label(jndl, text="desibar")
 l6 = Label(jndl, text="PSS-78")
 l7 = Label(jndl, text="Hasil perhitungan")
 l8 = Label(jndl, text="Anomali Volume: ")
-l9 = Label(jndl, text="      ")
 l10 = Label(jndl, text="Anomali Densitas: ")
-l11 = Label(jndl, text="      ")
 l12 = Label(jndl, text=" M\u00B3/Kg")
-l13 = Label(jndl, text=" M\u00B3/Kg")
+l13 = Label(jndl, text=" Kg/M\u00B3")
 # grid method to arrange labels in respective
 
 # rows and columns as specified
@@ -108,23 +132,29 @@ l5.grid(row=2, column=2, sticky=W, pady=2)
 l6.grid(row=3, column=2, sticky=W, pady=2)
 l7.grid(row=1, column=4, sticky=W, pady=2)
 l8.grid(row=2, column=4, sticky=W, pady=2)
-l9.grid(row=2, column=5, sticky=W, pady=2)
+# l9.grid(row=2, column=5, sticky=W, pady=2)
 l10.grid(row=3, column=4, sticky=W, pady=2)
-l11.grid(row=3, column=5, sticky=W, pady=2)
+# l11.grid(row=3, column=5, sticky=W, pady=2)
 l12.grid(row=2, column=6, sticky=W, pady=2)
 l13.grid(row=3, column=6, sticky=W, pady=2)
 # entry widgets, used to take entry from user
 e1 = Entry(jndl)
 e2 = Entry(jndl)
 e3 = Entry(jndl)
+e4 = Entry(jndl)
+e5 = Entry(jndl)
 
-b1 = Button(jndl, text="Hitung!", command=hitung)
-
+b1 = Button(jndl, text="Hitung!", command=hitung, pady=5)
+b2 = Button(jndl, text="Print", command=printtofile)
 # this will arrange entry widgets
 e1.grid(row=1, column=1, pady=2)
 e2.grid(row=2, column=1, pady=2)
 e3.grid(row=3, column=1, pady=2)
+e4.grid(row=2, column=5, sticky=W, pady=2)
+e5.grid(row=3, column=5, sticky=W, pady=2)
 
 b1.grid(row=4, column=3)
+b2.grid(row=4, column=7)
+
 # Run the GUI
 jndl.mainloop()

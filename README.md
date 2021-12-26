@@ -13,3 +13,6 @@ Versi pertama program Specsi
 
 V1.1 
 Penambahan fitur print ke file .txt
+
+V1.2 
+Penambahan fitur mengambil data dari file .txt yang berbentuk .csv
